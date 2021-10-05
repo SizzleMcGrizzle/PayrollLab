@@ -21,7 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import me.p3074098.gotcha.main.ApplicationEntry;
-import me.p3074098.gotcha.main.Contestant;
 
 import java.io.File;
 import java.io.IOException;

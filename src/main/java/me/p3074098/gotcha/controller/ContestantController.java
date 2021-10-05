@@ -4,9 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import me.p3074098.gotcha.main.Contestant;
-
-import java.io.InputStream;
 
 public class ContestantController {
     @FXML
