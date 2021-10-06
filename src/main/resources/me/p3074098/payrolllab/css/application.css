@@ -1,0 +1,17 @@
+.info-box {
+    -fx-border-color: white;
+    -fx-border-radius: 5px;
+}
+
+.info-label {
+    -fx-background-color: gray;
+}
+
+.background {
+    -fx-background-color: white;
+}
+
+.info-container {
+    -fx-background-color: gray;
+    -fx-background-radius: 10px;
+}

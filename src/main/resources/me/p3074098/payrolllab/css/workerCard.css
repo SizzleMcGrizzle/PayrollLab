@@ -1,0 +1,9 @@
+.background {
+    -fx-background-color: white;
+    -fx-background-radius: 10px;
+}
+
+.label-box {
+    -fx-background-radius: 10px 10px 0 0;
+    -fx-background-color: lightblue;
+}

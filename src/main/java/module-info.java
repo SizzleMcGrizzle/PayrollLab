@@ -1,11 +1,12 @@
-module me.p3074098.gotcha {
+module me.p3074098.payrolllab {
     requires javafx.controls;
     requires javafx.fxml;
-
-
-    opens me.p3074098.gotcha to javafx.fxml;
-    exports me.p3074098.gotcha.main;
-    opens me.p3074098.gotcha.main to javafx.fxml;
-    exports me.p3074098.gotcha.controller;
-    opens me.p3074098.gotcha.controller to javafx.fxml;
+    requires java.compiler;
+    
+    exports me.p3074098.payrolllab;
+    opens me.p3074098.payrolllab to javafx.fxml;
+    exports me.p3074098.payrolllab.controller;
+    opens me.p3074098.payrolllab.controller to javafx.fxml;
+    exports me.p3074098.payrolllab.workers to javafx.fxml;
+    opens me.p3074098.payrolllab.workers;
 }

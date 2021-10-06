@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.p3074098.payrolllab.controller.WorkerCardController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="anchor" prefHeight="150" prefWidth="150" stylesheets="@../css/workerCard.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.p3074098.payrolllab.controller.WorkerCardController">
+   <children>
+      <VBox layoutX="18.0" layoutY="-38.0" prefHeight="162.0" prefWidth="150.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox fx:id="nameHBox" prefHeight="31.0" prefWidth="150.0" styleClass="label-box">
+               <children>
+                  <Label fx:id="nameLabel" prefHeight="39.0" prefWidth="185.0" styleClass="label-label" text="John Smith">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="114.0" prefWidth="150.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="28.0" prefWidth="150.0" />
+                  <HBox prefHeight="18.0" prefWidth="150.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="81.0" text="Weekly Salary:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="salaryLabel" prefHeight="29.0" prefWidth="64.0" text="\$0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="54.0" prefWidth="150.0">
+                     <children>
+                        <Label prefHeight="54.0" prefWidth="50.0" text="Job title:">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="jobLabel" prefHeight="54.0" prefWidth="95.0" text="Boss" wrapText="true" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

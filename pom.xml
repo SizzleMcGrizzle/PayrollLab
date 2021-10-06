@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.p3074098</groupId>
-    <artifactId>gotcha</artifactId>
+    <artifactId>payrolllab</artifactId>
     <version>1.0.0</version>
 
     <!-- This description text is included in the Windows installer by default, see win-jpackage.txt -->
@@ -13,10 +13,10 @@
 
     <properties>
         <!-- Set this to the class with the main method for your application -->
-        <main-class>me.p3074098.gotcha/me.p3074098.gotcha.main.ApplicationEntry</main-class>
+        <main-class>me.p3074098.payrolllab/me.p3074098.payrolllab.ApplicationEntry</main-class>
         <!-- Change your app's name to something interesting... but you might want to avoid spaces
         just to safe for compatibility across operating systems. -->
-        <app.name>Gotcha</app.name>
+        <app.name>PayrollLab</app.name>
         <!-- This converts the build timestamp to a Windows-installer friendly version number (minute level resolution).
         Note that Maven generated timestamp is in UTC, not local time. For more information see:
          https://docs.microsoft.com/en-us/windows/win32/msi/productversion
@@ -135,7 +135,7 @@
                 <!-- Plugin to make working with JavaFX nicer. See https://github.com/openjfx/javafx-maven-plugin -->
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.5</version>
+                <version>0.0.6</version>
                 <configuration>
                     <mainClass>${main-class}</mainClass>
                 </configuration>
