@@ -12,30 +12,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/workerAdder.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.p3074098.payrolllab.controller.WorkerAdderController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="@../css/workerAdder.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.p3074098.payrolllab.controller.WorkerAdderController">
    <children>
       <VBox prefHeight="600.0" prefWidth="600.0" styleClass="background" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="600.0">
+            <HBox prefHeight="395.0" prefWidth="580.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="160.0" prefWidth="684.0" styleClass="header" text="Employee Adder" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
-                     </HBox.margin>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox prefHeight="380.0" prefWidth="580.0">
-               <children>
-                  <VBox prefHeight="0.0" prefWidth="164.0" styleClass="button-container">
+                  <VBox prefHeight="375.0" prefWidth="164.0" styleClass="button-container">
                      <HBox.margin>
                         <Insets bottom="10.0" left="20.0" right="10.0" top="10.0" />
                      </HBox.margin>
                      <children>
-                        <Button fx:id="bossButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="72.0" prefWidth="164.0" text="Boss">
+                        <Button fx:id="bossButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="75.0" prefWidth="164.0" text="Boss">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -47,7 +35,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="managerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="72.0" prefWidth="329.0" styleClass="job-button" text="Manager">
+                        <Button fx:id="managerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="75.0" prefWidth="329.0" styleClass="job-button" text="Manager">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -55,7 +43,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="commissionedWorkerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="72.0" prefWidth="329.0" styleClass="job-button" text="Commission Worker" textAlignment="CENTER" wrapText="true">
+                        <Button fx:id="commissionedWorkerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="75.0" prefWidth="329.0" styleClass="job-button" text="Commission Worker" textAlignment="CENTER" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -63,7 +51,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="hourlyWorkerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="72.0" prefWidth="329.0" styleClass="job-button" text="Hourly Worker">
+                        <Button fx:id="hourlyWorkerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="75.0" prefWidth="329.0" styleClass="job-button" text="Hourly Worker">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -71,7 +59,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="factoryWorkerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="72.0" prefWidth="329.0" styleClass="job-button" text="Factory Worker">
+                        <Button fx:id="factoryWorkerButton" mnemonicParsing="false" onAction="#positionButtonClick" prefHeight="75.0" prefWidth="329.0" styleClass="job-button" text="Factory Worker">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -90,7 +78,7 @@
                            <children>
                               <HBox fx:id="firstNameBox" layoutX="10.0" layoutY="18.0" prefHeight="44.0" prefWidth="337.0" styleClass="text-field-border">
                                  <children>
-                                    <TextField fx:id="firstNameField" prefHeight="58.0" prefWidth="442.0" promptText="John" styleClass="text-field">
+                                    <TextField fx:id="firstNameField" prefHeight="58.0" prefWidth="442.0" promptText="John">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
                                        </HBox.margin>
@@ -111,7 +99,7 @@
                            <children>
                               <HBox fx:id="lastNameBox" layoutX="10.0" layoutY="18.0" prefHeight="44.0" prefWidth="337.0" styleClass="text-field-border">
                                  <children>
-                                    <TextField fx:id="lastNameField" prefHeight="58.0" prefWidth="442.0" promptText="Smith" styleClass="text-field">
+                                    <TextField fx:id="lastNameField" prefHeight="58.0" prefWidth="442.0" promptText="Smith">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
                                        </HBox.margin>
@@ -132,7 +120,7 @@
                            <children>
                               <HBox fx:id="parameterBox1" layoutX="10.0" layoutY="18.0" prefHeight="44.0" prefWidth="337.0" styleClass="text-field-border">
                                  <children>
-                                    <TextField fx:id="parameter1Field" prefHeight="58.0" prefWidth="442.0" promptText="22,000" styleClass="text-field">
+                                    <TextField fx:id="parameter1Field" prefHeight="58.0" prefWidth="442.0" promptText="22,000">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
                                        </HBox.margin>
@@ -153,7 +141,7 @@
                            <children>
                               <HBox fx:id="parameterBox2" layoutX="10.0" layoutY="18.0" prefHeight="44.0" prefWidth="337.0" styleClass="text-field-border">
                                  <children>
-                                    <TextField fx:id="parameter2Field" prefHeight="58.0" prefWidth="442.0" promptText="5" styleClass="text-field">
+                                    <TextField fx:id="parameter2Field" prefHeight="58.0" prefWidth="442.0" promptText="5">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
                                        </HBox.margin>
@@ -174,7 +162,7 @@
                            <children>
                               <HBox fx:id="parameterBox3" layoutX="10.0" layoutY="18.0" prefHeight="44.0" prefWidth="337.0" styleClass="text-field-border">
                                  <children>
-                                    <TextField fx:id="parameter3Field" prefHeight="58.0" prefWidth="442.0" promptText="160,000" styleClass="text-field">
+                                    <TextField fx:id="parameter3Field" prefHeight="58.0" prefWidth="442.0" promptText="160,000">
                                        <HBox.margin>
                                           <Insets bottom="6.0" left="10.0" right="10.0" top="6.0" />
                                        </HBox.margin>
@@ -195,7 +183,7 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="85.0" prefWidth="580.0">
                <children>
                   <Button fx:id="addButton" mnemonicParsing="false" onAction="#addButtonClick" prefHeight="152.0" prefWidth="540.0" styleClass="add-button" text="Add">
                      <HBox.margin>

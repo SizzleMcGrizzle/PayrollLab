@@ -24,7 +24,7 @@ public class FactoryWorker extends Worker {
     
     @Override
     public String getColor() {
-        return "156, 131, 98";
+        return "255, 99, 229";
     }
     
     @Override

@@ -4,9 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import me.p3074098.payrolllab.workers.Boss;
 import me.p3074098.payrolllab.workers.CommissionWorker;
 import me.p3074098.payrolllab.workers.FactoryWorker;
@@ -41,16 +44,54 @@ public class WorkerGridController {
     
     @FXML
     private GridPane grid;
+
+    @FXML
+    private ScrollPane scrollPane;
+
+    @FXML
+    private HBox removeBox;
     
     private List<WorkerCardController> workerCards;
     private Button selectedButton;
+    private WorkerCardController selectedCard;
+    private ApplicationController applicationController;
     
-    
-    public void initialize(List<Worker> workers) {
+    public void initialize(ApplicationController applicationController, List<Worker> workers) {
+        this.applicationController = applicationController;
+
         selectedButton = allButton;
-        
+
+        scrollPane.setFitToWidth(true);
+
         createWorkerCards(workers);
         fillGrid();
+        displayRemoveButton(false);
+    }
+
+    private void displayRemoveButton(boolean show) {
+        removeBox.setManaged(show);
+        removeBox.setVisible(show);
+    }
+
+    public List<WorkerCardController> getWorkerCards() {
+        return workerCards;
+    }
+
+    public void add(Worker worker) {
+        addWorkerCard(worker);
+        fillGrid();
+    }
+
+    @FXML
+    public void onRemoveButtonClick(ActionEvent event) {
+        if (selectedCard == null)
+            return;
+
+        workerCards.remove(selectedCard);
+
+        setSelectedCard(null);
+        fillGrid();
+        applicationController.updateLabels();
     }
     
     @FXML
@@ -68,23 +109,39 @@ public class WorkerGridController {
     private void createWorkerCards(List<Worker> workers) {
         workerCards = new ArrayList<>();
         
-        for (Worker worker : workers) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("workerCard.fxml"));
-            
-            try {
-                fxmlLoader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            
-            WorkerCardController workerCardController = fxmlLoader.getController();
-            workerCardController.initialize(worker);
-            
-            workerCards.add(workerCardController);
-        }
+        for (Worker worker : workers)
+            addWorkerCard(worker);
     }
-    
+
+    private void addWorkerCard(Worker worker) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("workerCard.fxml"));
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        WorkerCardController workerCardController = fxmlLoader.getController();
+        workerCardController.initialize(worker, this);
+
+        workerCards.add(workerCardController);
+    }
+
+    public WorkerCardController getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void setSelectedCard(WorkerCardController newCard) {
+        if (selectedCard != null)
+            selectedCard.getAnchor().getStyleClass().remove("label-box-selected");
+
+        this.selectedCard = newCard;
+
+        displayRemoveButton(newCard != null);
+    }
+
     private void fillGrid() {
         grid.getChildren().clear();
         
@@ -105,7 +162,8 @@ public class WorkerGridController {
             anchorPane.setMinHeight(anchorPane.getPrefHeight());
             
             grid.add(anchorPane, col++, row);
-            GridPane.setMargin(anchorPane, new Insets(15));
+            grid.setAlignment(Pos.CENTER);
+            GridPane.setMargin(anchorPane, new Insets(10));
         }
     }
     
@@ -122,7 +180,7 @@ public class WorkerGridController {
         if (selectedButton.equals(commissionWorkerButton) && worker instanceof CommissionWorker)
             return true;
         
-        if (selectedButton.equals(hourlyWorkerButton) && worker instanceof HourlyWorker)
+        if (selectedButton.equals(hourlyWorkerButton) && worker instanceof HourlyWorker && !(worker instanceof Manager))
             return true;
         
         return selectedButton.equals(factoryWorkerButton) && worker instanceof FactoryWorker;

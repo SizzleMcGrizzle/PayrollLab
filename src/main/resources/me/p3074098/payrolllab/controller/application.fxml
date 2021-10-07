@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200" styleClass="background" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.p3074098.payrolllab.controller.ApplicationController">
+<AnchorPane prefHeight="700" prefWidth="1200" styleClass="background" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.p3074098.payrolllab.controller.ApplicationController">
     <children>
         <VBox layoutX="211.0" layoutY="1.0" prefHeight="800.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox prefHeight="600.0" prefWidth="600.0">
+                <HBox prefHeight="500.0" prefWidth="615.0">
                     <children>
-                        <AnchorPane fx:id="employeeAdder" prefHeight="600.0" prefWidth="871.0" />
+                        <AnchorPane fx:id="employeeAdder" prefHeight="484.0" prefWidth="600.0" />
                     </children>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" styleClass="info-container" VBox.vgrow="ALWAYS">
@@ -23,14 +23,14 @@
                      <children>
                         <HBox layoutX="15.0" layoutY="19.0" prefHeight="160.0" prefWidth="169.0" styleClass="info-box">
                            <children>
-                              <Label fx:id="employeesLabel" alignment="CENTER" prefHeight="190.0" prefWidth="220.0" text="0" textFill="WHITE">
+                              <Label fx:id="employeesLabel" alignment="CENTER" prefHeight="190.0" prefWidth="220.0" text="0">
                                  <font>
                                     <Font size="40.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <Label layoutX="25.0" layoutY="6.0" prefHeight="27.0" prefWidth="151.0" styleClass="info-label" text="Number of Employees" textFill="WHITE">
+                        <Label layoutX="25.0" layoutY="6.0" prefHeight="27.0" prefWidth="151.0" styleClass="info-label" text="Number of Employees">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -44,14 +44,14 @@
                      <children>
                         <HBox layoutX="6.0" layoutY="19.0" prefHeight="160.0" prefWidth="181.0" styleClass="info-box">
                            <children>
-                              <Label fx:id="avgSalaryLabel" alignment="CENTER" prefHeight="190.0" prefWidth="163.0" text="\$0" textFill="WHITE">
+                              <Label fx:id="avgSalaryLabel" alignment="CENTER" prefHeight="190.0" prefWidth="163.0" text="\$0">
                                  <font>
                                     <Font size="40.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <Label layoutX="18.0" layoutY="6.0" prefHeight="27.0" prefWidth="157.0" styleClass="info-label" text="Average Weekly Income" textFill="WHITE">
+                        <Label layoutX="18.0" layoutY="6.0" prefHeight="27.0" prefWidth="157.0" styleClass="info-label" text="Average Weekly Income">
                            <padding>
                               <Insets left="5.0" />
                            </padding>
@@ -65,14 +65,14 @@
                      <children>
                         <HBox layoutX="7.0" layoutY="19.0" prefHeight="160.0" prefWidth="175.0" styleClass="info-box">
                            <children>
-                              <Label alignment="CENTER" prefHeight="158.0" prefWidth="185.0" text="23" textFill="WHITE">
+                              <Label alignment="CENTER" prefHeight="158.0" prefWidth="185.0" text="23">
                                  <font>
                                     <Font size="40.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <Label layoutX="16.0" layoutY="6.0" prefHeight="27.0" prefWidth="157.0" styleClass="info-label" text="Unresolved HR Reports" textFill="WHITE">
+                        <Label layoutX="16.0" layoutY="6.0" prefHeight="27.0" prefWidth="157.0" styleClass="info-label" text="Unresolved HR Reports">
                            <padding>
                               <Insets left="5.0" right="5.0" />
                            </padding>
@@ -88,9 +88,9 @@
                </VBox.margin></HBox>
             </children>
         </VBox>
-        <VBox layoutX="600.0" layoutY="6.0" prefHeight="800.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox layoutX="600.0" layoutY="6.0" prefHeight="700.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane fx:id="employeeGrid" prefHeight="538.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
+            <AnchorPane fx:id="employeeGrid" prefHeight="811.0" prefWidth="600.0" VBox.vgrow="ALWAYS" />
          </children>
         </VBox>
     </children>

@@ -22,7 +22,7 @@ public class Boss extends Worker {
     
     @Override
     public String getColor() {
-        return "232, 149, 90";
+        return "255, 99, 99";
     }
     
     @Override

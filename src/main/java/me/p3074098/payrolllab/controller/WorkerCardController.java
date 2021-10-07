@@ -1,7 +1,9 @@
 package me.p3074098.payrolllab.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import me.p3074098.payrolllab.workers.Worker;
@@ -24,14 +26,27 @@ public class WorkerCardController {
     private AnchorPane anchor;
     
     private Worker worker;
+    private WorkerGridController controller;
     
-    public void initialize(Worker worker) {
+    public void initialize(Worker worker, WorkerGridController gridController) {
+        this.controller = gridController;
         this.worker = worker;
         
         nameHBox.setStyle("-fx-background-color: rgb(" + worker.getColor() + ")");
         nameLabel.setText(worker.getFirstName() + " " + worker.getLastName());
         salaryLabel.setText("$" + (int) worker.earnings());
         jobLabel.setText(worker.getJobTitle());
+    }
+
+    @FXML
+    public void onClick(MouseEvent event) {
+        if (controller.getSelectedCard() != null && controller.getSelectedCard().equals(this)) {
+            anchor.getStyleClass().remove("label-box-selected");
+            controller.setSelectedCard(null);
+        } else {
+            anchor.getStyleClass().add("label-box-selected");
+            controller.setSelectedCard(this);
+        }
     }
     
     public Worker getWorker() {

@@ -22,7 +22,7 @@ public class HourlyWorker extends Worker {
     
     @Override
     public String getColor() {
-        return "255, 255, 255";
+        return "99, 216, 255";
     }
     
     public double getOvertimeMultiplier() {

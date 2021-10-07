@@ -6,8 +6,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import me.p3074098.payrolllab.workers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,22 +81,26 @@ public class WorkerAdderController {
     
     private Button selectedPositionButton;
     private Label[] parameterLabels;
+    private Label[] allLabels;
     private TextField[] allTextFields;
     private TextField[] parameterTextFields;
     private HBox[] parameterBoxes;
     private ApplicationController applicationController;
+    private WorkerGridController gridController;
     
-    public void initialize(ApplicationController controller) {
+    public void initialize(ApplicationController controller, WorkerGridController gridController) {
         applicationController = controller;
+        this.gridController = gridController;
         selectedPositionButton = bossButton;
         parameterLabels = new Label[]{parameter1Label, parameter2Label, parameter3Label};
+        allLabels = new Label[]{firstNameLabel, lastNameLabel,parameter1Label,parameter2Label,parameter3Label};
         allTextFields = new TextField[]{firstNameField, lastNameField, parameter1Field, parameter2Field, parameter3Field};
         parameterTextFields = new TextField[]{parameter1Field, parameter2Field, parameter3Field};
         parameterBoxes = new HBox[]{firstNameBox, lastNameBox, parameterBox1, parameterBox2, parameterBox3};
         
         setTextFields();
     }
-    
+
     @FXML
     public void positionButtonClick(ActionEvent event) {
         Button source = (Button) event.getSource();
@@ -104,63 +110,81 @@ public class WorkerAdderController {
         selectedPositionButton = source;
         selectedPositionButton.getStyleClass().add("job-button-selected");
         
-        resetBordersForFields();
+        clearBorders();
         clearTextFields();
         setTextFields();
     }
     
     @FXML
     public void addButtonClick(ActionEvent event) {
+        clearBorders();
         String[] parameters = getParameters();
         
-        String firstName = "";
-        String lastName = "";
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+
+        if (firstName.isEmpty()) {
+            red(firstNameBox,firstNameLabel);
+            return;
+        }
+
+        if (lastName.isEmpty()) {
+            red(lastNameBox,lastNameLabel);
+            return;
+        }
         
         List<Double> entries = new ArrayList<>();
         
         for (int i = 0; i < parameters.length; i++) {
-            if (i == 0)
-                firstName = allTextFields[i].getText();
-            else if (i == 1)
-                lastName = allTextFields[i].getText();
-            else
                 try {
-                    entries.add(Double.parseDouble(parameterLabels[i - 2].getText()));
+                    entries.add(Double.parseDouble(parameterTextFields[i].getText()));
                 } catch (NumberFormatException e) {
-                    redBorder(parameterBoxes[i]);
+                    red(parameterBoxes[i+2], parameterLabels[i]);
+                    return;
                 }
-        }
-        
-        if (firstName.isEmpty()) {
-            redBorder(firstNameBox);
-            return;
-        }
-        
-        if (lastName.isEmpty()) {
-            redBorder(lastNameBox);
-            return;
         }
         
         createWorker(firstName, lastName, entries);
         clearTextFields();
+        clearBorders();
     }
     
     private void clearTextFields() {
-        for (TextField field : parameterTextFields)
+        for (TextField field : allTextFields)
             field.clear();
     }
     
     private void createWorker(String first, String last, List<Double> entries) {
-    
+        Worker worker;
+
+        if (selectedPositionButton.equals(bossButton))
+            worker = new Boss(first, last, entries.get(0));
+        else if (selectedPositionButton.equals(managerButton))
+            worker = new Manager(first, last, entries.get(0), entries.get(1));
+        else if (selectedPositionButton.equals(commissionedWorkerButton))
+            worker = new CommissionWorker(first, last, entries.get(0), entries.get(1), entries.get(2).intValue());
+        else if (selectedPositionButton.equals(factoryWorkerButton))
+            worker = new FactoryWorker(first, last, entries.get(0), entries.get(1).intValue());
+        else
+            worker = new HourlyWorker(first, last, entries.get(0), entries.get(1));
+
+        gridController.add(worker);
+        applicationController.updateLabels();
     }
     
-    private void redBorder(Node node) {
-        node.getStyleClass().add("red-border");
+    private void red(Node border, Node text) {
+        border.getStyleClass().add("red-border");
+        text.getStyleClass().add("red-text");
     }
     
-    private void resetBordersForFields() {
-        for (Node node : parameterBoxes)
+    private void clearBorders() {
+        for (Node node : parameterBoxes) {
             node.getStyleClass().remove("red-border");
+        }
+
+        for (Node node : allLabels) {
+            node.getStyleClass().remove("red-text");
+        }
     }
     
     private String[] getParameters() {

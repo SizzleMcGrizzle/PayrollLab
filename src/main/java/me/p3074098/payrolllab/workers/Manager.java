@@ -8,7 +8,7 @@ public class Manager extends HourlyWorker {
     
     @Override
     public String getColor() {
-        return "140, 97, 232";
+        return "255, 195, 99";
     }
     
     @Override

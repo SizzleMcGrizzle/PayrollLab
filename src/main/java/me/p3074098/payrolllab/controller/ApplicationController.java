@@ -5,10 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import me.p3074098.payrolllab.workers.Boss;
-import me.p3074098.payrolllab.workers.FactoryWorker;
-import me.p3074098.payrolllab.workers.Manager;
-import me.p3074098.payrolllab.workers.Worker;
+import me.p3074098.payrolllab.workers.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,35 +28,46 @@ public class ApplicationController implements Initializable {
     private Label employeesLabel;
     
     private List<Worker> workers;
+    private WorkerGridController gridController;
+    private WorkerAdderController adderController;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
         deserialize();
-        loadAdder();
         loadGrid();
+        loadAdder();
         updateLabels();
     }
     
     public void updateLabels() {
-        employeesLabel.setText(String.valueOf(workers.size()));
-        avgSalaryLabel.setText("$" + (int) getAverageSalary());
+        List<WorkerCardController> cards = gridController.getWorkerCards();
+
+        employeesLabel.setText(String.valueOf(gridController.getWorkerCards().size()));
+        avgSalaryLabel.setText("$" + (int) getAverageSalary(cards));
     }
     
-    private double getAverageSalary() {
+    private double getAverageSalary(List<WorkerCardController> cards) {
         double sum = 0;
         
-        for (Worker worker : workers)
-            sum += worker.earnings();
+        for (WorkerCardController card : cards)
+            sum += card.getWorker().earnings();
         
-        return sum / workers.size();
+        return sum / cards.size();
     }
     
     private void deserialize() {
         workers = Arrays.asList(
-                new Boss("Peyton", "Peck", 210000),
-                new FactoryWorker("Clint", "McKenzie", 1, 1000),
-                new Manager("Adrian", "Janner", 20, 50)
+                new HourlyWorker("Clara", "Dawson", 22.35, 40),
+                new HourlyWorker("Edward", "Fitz", 20.5, 45),
+                new HourlyWorker("Garren","Howard",24.15,32),
+                new FactoryWorker("Quin", "Raney",0.52,1240),
+                new CommissionWorker("Inez","Johnson",500,20,15),
+                new Boss("Abby","Barton",102000),
+                new CommissionWorker("Karen","Lowen",400,22,25),
+                new FactoryWorker("Mary","Norquist",0.52,1000),
+                new FactoryWorker("Opal","Pearson",0.52,902),
+                new HourlyWorker("Steve","Trimmer",31.15,0)
         );
     }
     
@@ -73,9 +81,11 @@ public class ApplicationController implements Initializable {
         }
         
         WorkerGridController workerGridController = fxmlLoader.getController();
-        workerGridController.initialize(workers);
+        workerGridController.initialize(this, workers);
         
         employeeGrid.getChildren().add(anchorPane);
+
+        this.gridController = workerGridController;
     }
     
     private void loadAdder() {
@@ -88,8 +98,10 @@ public class ApplicationController implements Initializable {
         }
         
         WorkerAdderController workerAdderController = fxmlLoader.getController();
-        workerAdderController.initialize(this);
+        workerAdderController.initialize(this, gridController);
         
         employeeAdder.getChildren().add(anchorPane);
+
+        this.adderController = workerAdderController;
     }
 }

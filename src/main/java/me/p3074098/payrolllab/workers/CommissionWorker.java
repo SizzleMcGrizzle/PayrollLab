@@ -21,7 +21,7 @@ public class CommissionWorker extends Worker {
     
     @Override
     public String getColor() {
-        return "133, 204, 255";
+        return "99, 255, 115";
     }
     
     @Override
