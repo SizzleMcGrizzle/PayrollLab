@@ -67,7 +67,8 @@ public class ApplicationController implements Initializable {
                 new CommissionWorker("Karen","Lowen",400,22,25),
                 new FactoryWorker("Mary","Norquist",0.52,1000),
                 new FactoryWorker("Opal","Pearson",0.52,902),
-                new HourlyWorker("Steve","Trimmer",31.15,0)
+                new HourlyWorker("Steve","Trimmer",31.15,0),
+                new Manager("Peyton", "Peck", 20, 45)
         );
     }
     
