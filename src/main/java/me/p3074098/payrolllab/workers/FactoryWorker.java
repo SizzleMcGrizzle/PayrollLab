@@ -2,7 +2,7 @@ package me.p3074098.payrolllab.workers;
 
 public class FactoryWorker extends Worker {
     
-    private static final double wageMultiplier = 1.5;
+    private static final double wageMultiplier = 1.2;
     
     private double wagePerPart;
     private int quantity;
@@ -17,7 +17,7 @@ public class FactoryWorker extends Worker {
     @Override
     public double earnings() {
         double partsOver1000 = Math.max(0, quantity - 1000);
-        double parts = Math.max(1000, quantity);
+        double parts = Math.min(1000, quantity);
         
         return parts * wagePerPart + wageMultiplier * partsOver1000 * wagePerPart;
     }

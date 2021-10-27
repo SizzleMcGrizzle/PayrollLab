@@ -15,7 +15,7 @@ public class HourlyWorker extends Worker {
     @Override
     public double earnings() {
         double overtime = Math.max(0, hours - 40);
-        double normal = Math.max(40, hours);
+        double normal = Math.min(40, hours);
         
         return normal * wage + getOvertimeMultiplier() * wage * overtime;
     }

@@ -34,7 +34,7 @@ public class WorkerCardController {
         
         nameHBox.setStyle("-fx-background-color: rgb(" + worker.getColor() + ")");
         nameLabel.setText(worker.getFirstName() + " " + worker.getLastName());
-        salaryLabel.setText("$" + (int) worker.earnings());
+        salaryLabel.setText("$" + String.format("%.2f", worker.earnings()));
         jobLabel.setText(worker.getJobTitle());
     }
 
