@@ -88,10 +88,10 @@ public class WorkerGridController {
             return;
 
         workerCards.remove(selectedCard);
-
+        applicationController.removeWorker(selectedCard.getWorker());
+        
         setSelectedCard(null);
         fillGrid();
-        applicationController.updateLabels();
     }
     
     @FXML

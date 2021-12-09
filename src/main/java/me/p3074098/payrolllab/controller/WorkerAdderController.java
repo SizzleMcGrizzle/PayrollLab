@@ -169,7 +169,7 @@ public class WorkerAdderController {
             worker = new HourlyWorker(first, last, entries.get(0), entries.get(1));
 
         gridController.add(worker);
-        applicationController.updateLabels();
+        applicationController.addWorker(worker);
     }
     
     private void red(Node border, Node text) {

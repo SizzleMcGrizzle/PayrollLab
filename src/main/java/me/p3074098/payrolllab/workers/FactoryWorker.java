@@ -1,17 +1,36 @@
 package me.p3074098.payrolllab.workers;
 
+import java.util.Map;
+
 public class FactoryWorker extends Worker {
     
-    private static final double wageMultiplier = 1.2;
+    private static final transient double wageMultiplier = 1.2;
     
     private double wagePerPart;
     private int quantity;
+    
+    public FactoryWorker(Map<String, Object> map) {
+        super(map);
+        
+        this.wagePerPart = (double) map.get("wagePerPart");
+        this.quantity = (int) map.get("quantity");
+    }
     
     public FactoryWorker(String firstName, String lastName, double wagePerPart, int quantity) {
         super(firstName, lastName);
         
         this.wagePerPart = wagePerPart;
         this.quantity = quantity;
+    }
+    
+    @Override
+    public Map<String, Object> serialize() {
+        Map<String, Object> map = super.serialize();
+        
+        map.put("wagePerPart", wagePerPart);
+        map.put("quantity", quantity);
+        
+        return map;
     }
     
     @Override

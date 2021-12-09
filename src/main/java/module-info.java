@@ -2,6 +2,7 @@ module me.p3074098.payrolllab {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.compiler;
+    requires org.yaml.snakeyaml;
     
     exports me.p3074098.payrolllab;
     opens me.p3074098.payrolllab to javafx.fxml;

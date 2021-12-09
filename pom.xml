@@ -46,6 +46,12 @@
         <windows.vendor>Peck</windows.vendor>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
         <!-- This dependency is a normal Maven dependency, here mainly as an example. It brings in other transitive
          dependencies as well. You can remove it from your project (unless you happen to need to generate test data.  -->
@@ -75,6 +81,12 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
             <classifier>${platform}</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.29</version>
         </dependency>
     </dependencies>
 
