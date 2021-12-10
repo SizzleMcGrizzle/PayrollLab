@@ -14,6 +14,7 @@ import me.p3074098.payrolllab.workers.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class WorkerAdderController {
     
@@ -51,11 +52,11 @@ public class WorkerAdderController {
         selectedPositionButton = bossButton;
 
         inputs = new FancyInput[]{
-                new FancyInput("First Name", "John"),
-                new FancyInput("Last Name", "Smith"),
-                new FancyInput("Parameter 1", "1000"),
-                new FancyInput("Parameter 2", "1000"),
-                new FancyInput("Parameter 3", "1000")
+                new FancyInput("First Name", "John", String.class),
+                new FancyInput("Last Name", "Smith", String.class),
+                new FancyInput("Parameter 1", "1000", Double.class),
+                new FancyInput("Parameter 2", "1000", Double.class),
+                new FancyInput("Parameter 3", "1000", Double.class)
         };
 
         for (FancyInput input : inputs) {
@@ -85,26 +86,20 @@ public class WorkerAdderController {
         clearBorders();
 
         String firstName = inputs[0].validateString();
-
-        if (firstName == null)
-            return;
-
         String lastName = inputs[1].validateString();
-
-        if (lastName == null)
-            return;
 
         List<Double> entries = new ArrayList<>();
         
         for (int i = 0; i < numParameters; i++) {
             FancyInput input = inputs[i+2];
             Double d = input.validateDouble();
-
-            if (d == null)
-                return;
-
             entries.add(d);
         }
+        
+        if (firstName == null
+            || lastName == null
+            || entries.stream().anyMatch(Objects::isNull))
+            return;
         
         createWorker(firstName, lastName, entries);
         clearTextFields();

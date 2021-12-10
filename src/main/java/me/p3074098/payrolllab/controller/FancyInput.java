@@ -25,9 +25,12 @@ public class FancyInput extends Pane {
 
     @FXML
     private TextField textField;
+    
+    private Class<?> type;
 
     public FancyInput(@NamedArg("labelDefault") String labelDefault,
-                      @NamedArg("prefText") String preferredText) {
+                      @NamedArg("prefText") String preferredText,
+                      @NamedArg("type") Class<?> type) {
         try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("fancyInput.fxml"));
@@ -44,19 +47,32 @@ public class FancyInput extends Pane {
 
         setLabelText(labelDefault);
 
+        this.type = type;
+        
         textField.setPromptText(preferredText);
 
         // Set color to blue if the text field is selected
         textField.focusedProperty().addListener(object -> {
             if(((ObservableBooleanValue) object).get())
                 select();
-            else
-                clearColor();
+            else {
+                if (type.equals(String.class)) {
+                    if (validateString() == null)
+                        warn();
+                    else
+                        clearColor();
+                } else if (type.equals(Double.class)) {
+                    if (validateDouble() == null)
+                        warn();
+                    else
+                        clearColor();
+                }
+            }
         });
     }
 
     protected void select() {
-        setColor("#3636fc");
+        setColor("#2CA1FF");
     }
 
     protected void clearColor() {
