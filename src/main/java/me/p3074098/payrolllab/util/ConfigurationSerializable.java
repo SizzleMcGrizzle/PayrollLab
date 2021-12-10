@@ -2,6 +2,7 @@ package me.p3074098.payrolllab.util;
 
 import java.io.File;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public interface ConfigurationSerializable {
     
@@ -9,12 +10,12 @@ public interface ConfigurationSerializable {
     
     String getFilePath();
     
-    default boolean deleteFile() {
-        return new File(ConfigurationSerialization.getApplicationDirectory(), getFilePath()).delete();
+    default void deleteFile() {
+       CompletableFuture.runAsync(() -> new File(ConfigurationSerialization.getApplicationDirectory(), getFilePath()).delete());
     }
     
     default void serializeToFile() {
-        ConfigurationSerialization.serialize(this);
+        CompletableFuture.runAsync(() -> ConfigurationSerialization.serialize(this));
     }
     
 }

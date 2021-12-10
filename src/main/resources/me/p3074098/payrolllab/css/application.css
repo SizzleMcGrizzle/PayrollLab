@@ -3,16 +3,6 @@
     -fx-border-radius: 5px;
 }
 
-.info-label {
-    -fx-background-color: rgb(224, 224, 224);
-}
-
-.background {
-    -fx-background-color: white;
-}
-
 .info-container {
-    -fx-background-color: rgb(224, 224, 224);
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }

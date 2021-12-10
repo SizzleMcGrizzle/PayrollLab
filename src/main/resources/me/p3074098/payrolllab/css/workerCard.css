@@ -1,13 +1,10 @@
 .background {
-    -fx-background-color: white;
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .label-box {
     -fx-background-radius: 10px 10px 0 0;
     -fx-background-color: lightblue;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .label-box-selected {

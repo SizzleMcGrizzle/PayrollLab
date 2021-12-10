@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,11 +43,18 @@ public class ApplicationController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-        deserialize();
-        loadGrid();
-        loadAdder();
-        updateLabels();
+        CompletableFuture<Void> c = CompletableFuture.runAsync(this::deserialize)
+                .thenRun(() -> {
+            loadGrid();
+            loadAdder();
+            updateLabels();
+        });
+
+        try {
+            c.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
     
     public void updateLabels() {

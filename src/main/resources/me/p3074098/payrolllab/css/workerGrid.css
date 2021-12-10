@@ -1,13 +1,9 @@
 .filter-container {
     -fx-background-radius: 10px;
-    -fx-background-color: rgb(200, 200, 200);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .background {
-    -fx-background-color: rgb(224, 224, 224);
     -fx-background-radius: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .search-label {
@@ -20,20 +16,13 @@
 }
 
 .scrollpane {
-    -fx-background-color: rgb(200, 200, 200);
     -fx-background-radius: 10px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0), innershadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .scrollpane > .viewport {
-    -fx-background-color: rgb(200, 200, 200);
     -fx-background-radius: 10px;
 
-}
-
-.remove-button {
-    -fx-background-color: rgb(224, 96, 96);
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
 }
 
 .scrollpane .scroll-bar:vertical .thumb {

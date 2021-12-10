@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import me.p3074098.payrolllab.workers.*;
 
 import java.util.ArrayList;
@@ -30,74 +31,38 @@ public class WorkerAdderController {
     
     @FXML
     private Button factoryWorkerButton;
-    
-    @FXML
-    private TextField firstNameField;
-    
-    @FXML
-    private Label firstNameLabel;
-    
-    @FXML
-    private TextField lastNameField;
-    
-    @FXML
-    private Label lastNameLabel;
-    
-    @FXML
-    private TextField parameter1Field;
-    
-    @FXML
-    private Label parameter1Label;
-    
-    @FXML
-    private TextField parameter2Field;
-    
-    @FXML
-    private Label parameter2Label;
-    
-    @FXML
-    private TextField parameter3Field;
-    
-    @FXML
-    private Label parameter3Label;
-    
+
     @FXML
     private Button addButton;
-    
+
     @FXML
-    private HBox parameterBox1;
-    
-    @FXML
-    private HBox parameterBox2;
-    
-    @FXML
-    private HBox parameterBox3;
-    
-    @FXML
-    private HBox firstNameBox;
-    
-    @FXML
-    private HBox lastNameBox;
+    private VBox parameterBox;
     
     private Button selectedPositionButton;
-    private Label[] parameterLabels;
-    private Label[] allLabels;
-    private TextField[] allTextFields;
-    private TextField[] parameterTextFields;
-    private HBox[] parameterBoxes;
     private ApplicationController applicationController;
     private WorkerGridController gridController;
+
+    private FancyInput[] inputs;
+    private int numParameters = 1;
     
     public void initialize(ApplicationController controller, WorkerGridController gridController) {
         applicationController = controller;
         this.gridController = gridController;
         selectedPositionButton = bossButton;
-        parameterLabels = new Label[]{parameter1Label, parameter2Label, parameter3Label};
-        allLabels = new Label[]{firstNameLabel, lastNameLabel,parameter1Label,parameter2Label,parameter3Label};
-        allTextFields = new TextField[]{firstNameField, lastNameField, parameter1Field, parameter2Field, parameter3Field};
-        parameterTextFields = new TextField[]{parameter1Field, parameter2Field, parameter3Field};
-        parameterBoxes = new HBox[]{firstNameBox, lastNameBox, parameterBox1, parameterBox2, parameterBox3};
-        
+
+        inputs = new FancyInput[]{
+                new FancyInput("First Name", "John"),
+                new FancyInput("Last Name", "Smith"),
+                new FancyInput("Parameter 1", "1000"),
+                new FancyInput("Parameter 2", "1000"),
+                new FancyInput("Parameter 3", "1000")
+        };
+
+        for (FancyInput input : inputs) {
+            parameterBox.getChildren().add(input);
+        }
+
+
         setTextFields();
     }
 
@@ -118,40 +83,37 @@ public class WorkerAdderController {
     @FXML
     public void addButtonClick(ActionEvent event) {
         clearBorders();
-        String[] parameters = getParameters();
-        
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
 
-        if (firstName.isEmpty()) {
-            red(firstNameBox,firstNameLabel);
-            return;
-        }
+        String firstName = inputs[0].validateString();
 
-        if (lastName.isEmpty()) {
-            red(lastNameBox,lastNameLabel);
+        if (firstName == null)
             return;
-        }
-        
+
+        String lastName = inputs[1].validateString();
+
+        if (lastName == null)
+            return;
+
         List<Double> entries = new ArrayList<>();
         
-        for (int i = 0; i < parameters.length; i++) {
-                try {
-                    entries.add(Double.parseDouble(parameterTextFields[i].getText()));
-                } catch (NumberFormatException e) {
-                    red(parameterBoxes[i+2], parameterLabels[i]);
-                    return;
-                }
+        for (int i = 0; i < numParameters; i++) {
+            FancyInput input = inputs[i+2];
+            Double d = input.validateDouble();
+
+            if (d == null)
+                return;
+
+            entries.add(d);
         }
         
         createWorker(firstName, lastName, entries);
         clearTextFields();
         clearBorders();
     }
-    
+
     private void clearTextFields() {
-        for (TextField field : allTextFields)
-            field.clear();
+        for (FancyInput input : inputs)
+            input.clearText();
     }
     
     private void createWorker(String first, String last, List<Double> entries) {
@@ -178,13 +140,8 @@ public class WorkerAdderController {
     }
     
     private void clearBorders() {
-        for (Node node : parameterBoxes) {
-            node.getStyleClass().remove("red-border");
-        }
-
-        for (Node node : allLabels) {
-            node.getStyleClass().remove("red-text");
-        }
+        for (FancyInput input : inputs)
+            input.clearColor();
     }
     
     private String[] getParameters() {
@@ -208,22 +165,18 @@ public class WorkerAdderController {
         
         for (int i = 0; i < 3; i++) {
             boolean show = false;
-            Label label = parameterLabels[i];
-            HBox box = parameterBoxes[i + 2];
+
+            FancyInput input = inputs[i+2];
             
             if (parameters.length > i) {
                 String s = parameters[i];
                 
-                label.setText(s);
-                label.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                input.setLabelText(s);
                 
                 show = true;
             }
             
-            box.setVisible(show);
-            box.setManaged(show);
-            label.setVisible(show);
-            label.setManaged(show);
+            input.adjustVisibility(show);
         }
     }
 }

@@ -1,0 +1,15 @@
+.background-0 {
+    -fx-background-color: white;
+}
+
+.background-1 {
+    -fx-background-color: rgb(224, 224, 224);
+}
+
+.background-2 {
+    -fx-background-color: rgb(200, 200, 200);
+}
+
+.dropShadow-1 {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 20, 0.1, 0.0, 0.0);
+}
